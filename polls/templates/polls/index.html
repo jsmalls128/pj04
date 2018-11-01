@@ -1,0 +1,37 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>LoL E-Sports polls</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+  </head>
+  <body>
+    <header><div class="header">LoL E-sports polls</div></header>
+    <div class = "topnav">
+      <a href="/pj04/static/schema.html">Schema</a>
+      <a href="/pj04/admin">Admin</a>
+      <a href="/pj04/polls">Polls</a>
+      <a href="/pj04">Home</a>
+    </div>
+    <h1 id="index-header">Available polls</h1>
+      {% if latest_question_list %}
+        <ul>
+          {% for question in latest_question_list %}
+          <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No polls are available.</p>
+      {% endif %}
+    <div class="image-container">
+      <img alt="G2 logo" src="../static/polls/images/G2.png">
+      <img alt="Fnatic logo" src="../static/polls/images/fnatic.png">
+      <img alt="C9 logo" src="../static/polls/images/C9.png">
+      <img alt="IG logo" src="../static/polls/images/IG.png">
+      <img alt="RNG logo" src="../static/polls/images/RNG.png">
+      <img alt="EDG logo" src="../static/polls/images/EDG.png">
+      <img alt="Afreeca logo" src="../static/polls/images/AF.png">
+      <img alt="KT logo" src="../static/polls/images/KT.png">
+    </div>
+  </body>
+</html>

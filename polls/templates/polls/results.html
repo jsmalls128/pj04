@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>LoL E-sports polls results</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <header> <div class="header">LoL E-sports Results</div> </header>
+    <div class = "topnav">
+         <a href="/pj04/static/schema.html">Schema</a>
+         <a href="/pj04/admin">Admin</a>
+         <a href="/pj04/polls">Polls</a>
+         <a href="/pj04">Home</a>
+    </div>
+    <h1>{{ question.question_text }}</h1>
+    <ul>
+    {% for choice in question.choice_set.all %}
+      <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'polls:detail' question.id %}" class="vote-again">Vote again?</a>
+  </body>
+</html>

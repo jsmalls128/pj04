@@ -1,0 +1,28 @@
+<!-- Voting page -->
+{% load static %}
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+    <meta charset="UTF-8">
+    <title>LoL E-sports polls</title>
+  </head>
+  <body>
+    <header><div class="header">LoL E-sports poll</div></header>
+    <div class = "topnav">
+     <a href="/pj04/static/schema.html">Schema</a>
+     <a href="/pj04/admin">Admin</a>
+     <a href="/pj04/polls">Polls</a>
+     <a href="/pj04">Home</a>
+    </div>
+    <h1>{{ question.question_text }}</h1>
+    {% if error_message %}<p><h2><strong>{{ error_message }}</strong></h2></p>{% endif %}
+      <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+          <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+          <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+        <input type="submit" value="Vote">
+      </form>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>LoL E-sports Schema</title>
+    <link rel="stylesheet" type="text/css" href="polls/style.css">
+  </head>
+  <body>
+    <header><div class="header">LoL E-Sports Schema</div></header>
+    <div class = "topnav">
+     <a href="/pj04/static/schema.html">Schema</a>
+     <a href="/pj04/admin">Admin</a>
+     <a href="/pj04/polls">Polls</a>
+     <a href="/pj04">Home</a>
+    </div>
+      <h4>There's alot more to work with compared to the previous project so take a good look at what we have</h4>
+      <p style="text-align: center">The schema is available for download right <a href="./schema.sql">here</a>
+      <h2>auth_group</h2>
+      <pre>
+	+-------+-------------+------+-----+---------+----------------+
+	| Field | Type        | Null | Key | Default | Extra          |
+	+-------+-------------+------+-----+---------+----------------+
+	| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+	| name  | varchar(80) | NO   | UNI | NULL    |                |
+	+-------+-------------+------+-----+---------+----------------+
+      </pre>
+      <h2>auth_group_permissions</h2>
+      <pre>
+	+---------------+---------+------+-----+---------+----------------+
+	| Field         | Type    | Null | Key | Default | Extra          |
+	+---------------+---------+------+-----+---------+----------------+
+	| id            | int(11) | NO   | PRI | NULL    | auto_increment |
+	| group_id      | int(11) | NO   | MUL | NULL    |                |
+	| permission_id | int(11) | NO   | MUL | NULL    |                |
+	+---------------+---------+------+-----+---------+----------------+
+      </pre>
+      <h2>auth_permission</h2>
+      <pre>
+	+-----------------+--------------+------+-----+---------+----------------+
+	| Field           | Type         | Null | Key | Default | Extra          |
+	+-----------------+--------------+------+-----+---------+----------------+
+	| id              | int(11)      | NO   | PRI | NULL    | auto_increment |
+	| name            | varchar(255) | NO   |     | NULL    |                |
+	| content_type_id | int(11)      | NO   | MUL | NULL    |                |
+	| codename        | varchar(100) | NO   |     | NULL    |                |
+	+-----------------+--------------+------+-----+---------+----------------+
+      </pre>
+      <h2>auth_user</h2>
+      <pre>
+	+--------------+--------------+------+-----+---------+----------------+
+	| Field        | Type         | Null | Key | Default | Extra          |
+	+--------------+--------------+------+-----+---------+----------------+
+	| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+	| password     | varchar(128) | NO   |     | NULL    |                |
+	| last_login   | datetime(6)  | YES  |     | NULL    |                |
+	| is_superuser | tinyint(1)   | NO   |     | NULL    |                |
+	| username     | varchar(150) | NO   | UNI | NULL    |                |
+	| first_name   | varchar(30)  | NO   |     | NULL    |                |
+	| last_name    | varchar(150) | NO   |     | NULL    |                |
+	| email        | varchar(254) | NO   |     | NULL    |                |
+	| is_staff     | tinyint(1)   | NO   |     | NULL    |                |
+	| is_active    | tinyint(1)   | NO   |     | NULL    |                |
+	| date_joined  | datetime(6)  | NO   |     | NULL    |                |
+	+--------------+--------------+------+-----+---------+----------------+
+      </pre>
+      <h2>auth_user_groups</h2>
+      <pre>
+	+----------+---------+------+-----+---------+----------------+
+	| Field    | Type    | Null | Key | Default | Extra          |
+	+----------+---------+------+-----+---------+----------------+
+	| id       | int(11) | NO   | PRI | NULL    | auto_increment |
+	| user_id  | int(11) | NO   | MUL | NULL    |                |
+	| group_id | int(11) | NO   | MUL | NULL    |                |
+	+----------+---------+------+-----+---------+----------------+
+      </pre>
+      <h2>auth_user_user_permissions</h2>
+      <pre>
+	+---------------+---------+------+-----+---------+----------------+
+	| Field         | Type    | Null | Key | Default | Extra          |
+	+---------------+---------+------+-----+---------+----------------+
+	| id            | int(11) | NO   | PRI | NULL    | auto_increment |
+	| user_id       | int(11) | NO   | MUL | NULL    |                |
+	| permission_id | int(11) | NO   | MUL | NULL    |                |
+	+---------------+---------+------+-----+---------+----------------+
+      </pre>
+      <h2>django_admin_log</h2>
+      <pre>
+	+-----------------+----------------------+------+-----+---------+----------------+
+	| Field           | Type                 | Null | Key | Default | Extra          |
+	+-----------------+----------------------+------+-----+---------+----------------+
+	| id              | int(11)              | NO   | PRI | NULL    | auto_increment |
+	| action_time     | datetime(6)          | NO   |     | NULL    |                |
+	| object_id       | longtext             | YES  |     | NULL    |                |
+	| object_repr     | varchar(200)         | NO   |     | NULL    |                |
+	| action_flag     | smallint(5) unsigned | NO   |     | NULL    |                |
+	| change_message  | longtext             | NO   |     | NULL    |                |
+	| content_type_id | int(11)              | YES  | MUL | NULL    |                |
+	| user_id         | int(11)              | NO   | MUL | NULL    |                |
+	+-----------------+----------------------+------+-----+---------+----------------+
+      </pre>
+      <h2>django_content_type</h2>
+      <pre>
+	+-----------+--------------+------+-----+---------+----------------+
+	| Field     | Type         | Null | Key | Default | Extra          |
+	+-----------+--------------+------+-----+---------+----------------+
+	| id        | int(11)      | NO   | PRI | NULL    | auto_increment |
+	| app_label | varchar(100) | NO   | MUL | NULL    |                |
+	| model     | varchar(100) | NO   |     | NULL    |                |
+	+-----------+--------------+------+-----+---------+----------------+
+      </pre>
+      <h2>django_migrations</h2>
+      <pre>
+	+---------+--------------+------+-----+---------+----------------+
+	| Field   | Type         | Null | Key | Default | Extra          |
+	+---------+--------------+------+-----+---------+----------------+
+	| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+	| app     | varchar(255) | NO   |     | NULL    |                |
+	| name    | varchar(255) | NO   |     | NULL    |                |
+	| applied | datetime(6)  | NO   |     | NULL    |                |
+	+---------+--------------+------+-----+---------+----------------+
+      </pre>
+      <h2>django_sessions</h2>
+      <pre>
+	+--------------+-------------+------+-----+---------+-------+
+	| Field        | Type        | Null | Key | Default | Extra |
+	+--------------+-------------+------+-----+---------+-------+
+	| session_key  | varchar(40) | NO   | PRI | NULL    |       |
+	| session_data | longtext    | NO   |     | NULL    |       |
+	| expire_date  | datetime(6) | NO   | MUL | NULL    |       |
+	+--------------+-------------+------+-----+---------+-------+
+      </pre>
+      <h2>polls_choice</h2>
+      <pre>
+	+-------------+--------------+------+-----+---------+----------------+
+	| Field       | Type         | Null | Key | Default | Extra          |
+	+-------------+--------------+------+-----+---------+----------------+
+	| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+	| choice_text | varchar(200) | NO   |     | NULL    |                |
+	| votes       | int(11)      | NO   |     | NULL    |                |
+	| question_id | int(11)      | NO   | MUL | NULL    |                |
+	+-------------+--------------+------+-----+---------+----------------+
+      </pre>
+      <h2>polls_questions</h2>
+      <pre>
+	+---------------+--------------+------+-----+---------+----------------+
+	| Field         | Type         | Null | Key | Default | Extra          |
+	+---------------+--------------+------+-----+---------+----------------+
+	| id            | int(11)      | NO   | PRI | NULL    | auto_increment |
+	| question_text | varchar(200) | NO   |     | NULL    |                |
+	| pub_date      | datetime(6)  | NO   |     | NULL    |                |
+	+---------------+--------------+------+-----+---------+----------------+
+      </pre>
+    </body>
+</html>
